@@ -1,0 +1,4 @@
+{
+    "programmer": "AVRISP mkII",
+    "port": "/dev/ttyACM0"
+}
