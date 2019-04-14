@@ -85,12 +85,12 @@ while True:
     elif dir == 'A':
 	    moveLeft()
     elif dir == 'D':
-		  moveRight()
+        moveRight()
     elif dir == 'L':
-		  moveHardLeft()
+        moveHardLeft()
     elif dir == 'R':
-		  moveHardRight()
+        moveHardRight()
     else:
-		  moveStop()
+        moveStop()
 
 

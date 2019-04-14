@@ -3,6 +3,7 @@ package team.willcodeforfood.nsu.rescuer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String s = addrField.getEditableText().toString();
+                Log.i("URI = ", s);
                 playStream(s);
             }});
     }
