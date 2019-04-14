@@ -1,15 +1,24 @@
 from pyfirmata import Arduino, util
 from pyfirmata import INPUT, OUTPUT, PWM
 
+import socket
+
+LOCALHOST = "192.168.43.203"
+PORT = 8080
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((LOCALHOST, PORT))
+server.listen(1)
+print("Server started")
+print("Waiting for client request..")
+
+
 board = Arduino('/dev/ttyACM0')
 
 motorInputs = [9,10,11,12]
 leftMotor = 5
 rightMotor = 6
-
 motorSpeed = 0.95
 holdingTork = 0.95
-
 leftMotorSpeed = motorSpeed
 rightMotorSpeed = motorSpeed
 
@@ -19,7 +28,7 @@ for i in motorInputs:
 board.digital[rightMotor].mode = PWM
 board.digital[leftMotor].mode = PWM
 
-dir = 'A'
+dir = 'Nothing'
 
 def moveForward():
     board.digital[leftMotor].write(motorSpeed)
@@ -78,6 +87,14 @@ def moveStop():
     board.digital[motorInputs[3]].write(0)
 
 while True:
+    clientConnection,clientAddress = server.accept()
+    print("Connected client :" , clientAddress)
+    data = clientConnection.recv(1024)
+    dir = data.decode()
+    
+    clientConnection.send(bytes("Successfully Connected to Server!!",'UTF-8'))
+    print("Button Pressed:", dir)
+
     if dir == 'W':
 	    moveForward()
     elif dir == 'S':
@@ -93,4 +110,4 @@ while True:
     else:
         moveStop()
 
-
+    clientConnection.close()
