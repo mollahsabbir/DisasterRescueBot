@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="vertical_margin">32dp</dimen>
+    <dimen name="horizontal_margin">16dp</dimen>
+    <dimen name="button_box">60dp</dimen>
+    <dimen name="first_box_margin">60dp</dimen>
+    <dimen name="second_box_margin">120dp</dimen>
+    <dimen name="third_box_margin">180dp</dimen>
+    <dimen name="fourth_box_margin">240dp</dimen>
+</resources>

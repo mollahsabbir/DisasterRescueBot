@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/addr"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textinput_helper_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="http://192.168.43.203:8160"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@id/addr_input_layout"
+        android:layout_marginStart="@dimen/vertical_margin"
+        android:layout_marginEnd="@dimen/vertical_margin"
+        android:layout_marginTop="@dimen/horizontal_margin"
+        android:layout_marginBottom="@dimen/horizontal_margin"
+        android:text="@string/text_input_uri"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
-    <Button
-        android:id="@+id/connect"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/addr_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Connect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addr" />
+        android:layout_marginStart="@dimen/vertical_margin"
+        android:layout_marginEnd="@dimen/vertical_margin"
+        android:layout_marginTop="@dimen/horizontal_margin"
+        android:layout_marginBottom="@dimen/horizontal_margin"
+        android:layout_centerInParent="true"
+        android:hint="@string/input_hint">
 
-    <VideoView
-        android:id="@+id/streamview"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/addr_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/connect_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect" />
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/vertical_margin"
+        android:text="@string/text_connect_button" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

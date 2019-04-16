@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Rescuer</string>
+
+    <string name="text_input_uri">Enter the Uri of the incoming Stream</string>
+    <string name="input_hint">192.168.xxx.xxx</string>
+    <string name="text_connect_button">CONNECT</string>
 </resources>

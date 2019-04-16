@@ -1,63 +1,39 @@
 package team.willcodeforfood.nsu.rescuer;
 
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.MediaController;
-import android.widget.Toast;
-import android.widget.VideoView;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText addrField;
-    Button btnConnect;
-    VideoView streamView;
-    MediaController mediaController;
+    // Tag to be used for debugging
+    private static final String LOG_TAG =  MainActivity.class.getSimpleName();
+
+    TextInputEditText addrField;
+    MaterialButton connectButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addrField = findViewById(R.id.addr);
-        btnConnect = findViewById(R.id.connect);
-        streamView = findViewById(R.id.streamview);
+        addrField = findViewById(R.id.addr_input);
+        connectButton = findViewById(R.id.connect_button);
 
-        btnConnect.setOnClickListener(new View.OnClickListener(){
+        // Start the searchProductActivity whenever the searchProduct toolbar is clicked
+        connectButton.setOnClickListener(view ->
+        {
+            String uriString = Objects.requireNonNull(addrField.getText()).toString();
+            Log.v(LOG_TAG, "The uri String is: " + uriString);
 
-            @Override
-            public void onClick(View v) {
-                String s = addrField.getEditableText().toString();
-                Log.i("URI = ", s);
-                playStream(s);
-            }});
+            startActivity(BotControlActivity.buildIntent(this, uriString));
+        });
     }
-
-    private void playStream(String src){
-        Uri UriSrc = Uri.parse(src);
-        if(UriSrc == null){
-            Toast.makeText(MainActivity.this,
-                    "UriSrc == null", Toast.LENGTH_LONG).show();
-        }else{
-            streamView.setVideoURI(UriSrc);
-            mediaController = new MediaController(this);
-            streamView.setMediaController(mediaController);
-            streamView.start();
-
-            Toast.makeText(MainActivity.this,
-                    "Connect: " + src,
-                    Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        streamView.stopPlayback();
-    }
-
 }
